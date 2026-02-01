@@ -47,17 +47,7 @@ const MultiSelectModal = ({ isOpen, onClose, onSave }) => {
     );
   }, [activeTab, debouncedQuery]);
 
-  const handleToggle = (id) => {
-    setSelectedIds((prev) => {
-      const newSet = new Set(prev[activeTab]);
-      if (newSet.has(id)) {
-        newSet.delete(id);
-      } else {
-        newSet.add(id);
-      }
-      return { ...prev, [activeTab]: newSet };
-    });
-  };
+
 
   const handleSelectAll = () => {
     const allFilteredIds = filteredItems.map((item) => item.id);
@@ -75,13 +65,6 @@ const MultiSelectModal = ({ isOpen, onClose, onSave }) => {
     });
   };
 
-  const handleSave = () => {
-    const results = {
-      fruits: ITEMS.fruits.filter((f) => selectedIds.fruits.has(f.id)),
-      vegetables: ITEMS.vegetables.filter((v) => selectedIds.vegetables.has(v.id))
-    };
-    onSave(results);
-  };
 
   if (!isOpen) return null;
 
